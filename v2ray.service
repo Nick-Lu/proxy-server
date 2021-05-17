@@ -1,0 +1,10 @@
+[Unit]
+After=network.service
+
+[Service]
+PIDFile=/var/run/v2ray.pid
+ExecStart=/usr/bin/v2ray --config /etc/v2ray.json
+
+[Install]
+WantedBy=default.target
+

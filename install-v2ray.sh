@@ -68,7 +68,7 @@ EOF
 
 __v2ray_as_server() {
   # Install V2Ray as service
-  SERVICE_MODULE_FILE_URL=https://github.com/Robert-lihouyi/aws-image/raw/main/v2ray.service
+  SERVICE_MODULE_FILE_URL=https://raw.githubusercontent.com/Nick-Lu/proxy-server/master/v2ray.service
   SERVICE_MODULE_PATH=/etc/systemd/system/v2ray.service
 
   curl -fsSL ${SERVICE_MODULE_FILE_URL} --output ${SERVICE_MODULE_PATH}
