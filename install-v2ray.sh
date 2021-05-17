@@ -25,7 +25,7 @@ __config_proxy_server() {
   USER=$2
   PASS=$3
 
-  cat >$V2RAY_CONFIG_FILE_PATH <<EOF
+  cat >/etc/v2ray.json <<EOF
 {
   "inbounds": [
     {
@@ -63,7 +63,7 @@ __config_proxy_server() {
 }
 EOF
 
-  echo "Generate v2ray config file to <${V2RAY_CONFIG_FILE_PATH}>"
+  echo "Generate v2ray config file to /etc/v2ray.json"
 }
 
 __v2ray_as_server() {
