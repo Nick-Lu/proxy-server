@@ -37,8 +37,8 @@ __config_proxy_server() {
         "auth": "password",
         "accounts": [
           {
-            "user": ${USER},
-            "pass": ${PASS}
+            "user": "${USER}",
+            "pass": "${PASS}"
           }
         ],
         "udp": False,
