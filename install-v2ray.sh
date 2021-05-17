@@ -10,7 +10,7 @@ __install_v2ray() {
   apt-get install unzip -y
 
   # Download v2ray zip file from github releases
-  curl -L https://github.com/v2fly/v2ray-core/releases/download/v${V2RAY_VERSION}/${FILE_NAME} --output ${TMP_ZIP_PATH}
+  curl -fsSL https://github.com/v2fly/v2ray-core/releases/download/v${V2RAY_VERSION}/${FILE_NAME} --output ${TMP_ZIP_PATH}
 
   LIB_PATH=/usr/lib/v2ray-linux-64
   echo "Download and install v2ray-linux-64 to ${LIB_PATH}"
@@ -71,7 +71,7 @@ __v2ray_as_server() {
   SERVICE_MODULE_FILE_URL=https://github.com/Robert-lihouyi/aws-image/raw/main/v2ray.service
   SERVICE_MODULE_PATH=/etc/systemd/system/v2ray.service
 
-  curl -L ${SERVICE_MODULE_FILE_URL} --output ${SERVICE_MODULE_PATH}
+  curl -fsSL ${SERVICE_MODULE_FILE_URL} --output ${SERVICE_MODULE_PATH}
 
   chmod 644 ${SERVICE_MODULE_PATH}
 
