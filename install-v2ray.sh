@@ -41,11 +41,11 @@ __config_proxy_server() {
             "pass": "${PASS}"
           }
         ],
-        "udp": False,
+        "udp": "false",
         "ip": "127.0.0.1"
       },
       "sniffing": {
-        "enabled": True,
+        "enabled": "true",
         "destOverride": [
           "http",
           "tls"
