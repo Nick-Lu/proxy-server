@@ -14,22 +14,21 @@ __install_v2ray() {
 
   LIB_PATH=/usr/lib/v2ray-linux-64
   echo "Download and install v2ray-linux-64 to ${LIB_PATH}"
-  unzip -o ${TMP_ZIP_PATH} -d ${LIB_PATH}
+  unzip -q -o ${TMP_ZIP_PATH} -d ${LIB_PATH}
 
   echo "Create soft symbol link to /usr/bin/v2ray"
   ln -s -f ${LIB_PATH}/v2ray /usr/bin/v2ray
 }
 
 __config_proxy_server() {
-  PORT=$1
-  USER=$2
-  PASS=$3
+  USER=$1
+  PASS=$2
 
   cat >/etc/v2ray.json <<EOF
 {
   "inbounds": [
     {
-      "port": $PORT,
+      "port": 1080,
       "listen": "0.0.0.0",
       "tag": "socks-inbound",
       "protocol": "socks",
@@ -43,6 +42,18 @@ __config_proxy_server() {
         ],
         "udp": false,
         "ip": "127.0.0.1"
+      },
+      {
+        "protocol": "shadowsocks",
+        "port": 1081,
+        "listen": "0.0.0.0",
+        "tag": "shadowsocks-inbound",
+        "settings": {
+          "method": "aes-256-gcm",
+          "password": "${PASS}",
+          "network": "tcp",
+          "ivCheck": true
+        }
       },
       "sniffing": {
         "enabled": true,
@@ -80,16 +91,16 @@ __v2ray_as_server() {
   /usr/bin/systemctl start v2ray.service
 }
 
-if [ -n "$3" ]; then
+if [ -n "$2" ]; then
   __install_v2ray
-  __config_proxy_server $1 $2 $3
+  __config_proxy_server $1 $2
   __v2ray_as_server
 else
   # 参数错误，退出
   echo "$(
     cat <<EOS
 
-Usage:	$0 PORT USER PASS
+Usage:	$0 USER PASS
 
 EOS
   )
