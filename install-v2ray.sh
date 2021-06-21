@@ -81,7 +81,7 @@ __v2ray_as_server() {
 
   echo "Enable service v2ray.service <${SERVICE_MODULE_PATH}>"
   /usr/bin/systemctl enable v2ray.service
-  /usr/bin/systemctl start v2ray.service
+  /usr/bin/systemctl restart v2ray.service
 }
 
 if [ -n "$2" ]; then
