@@ -42,25 +42,18 @@ __config_proxy_server() {
         ],
         "udp": false,
         "ip": "127.0.0.1"
-      },
-      {
-        "protocol": "shadowsocks",
-        "port": 1081,
-        "listen": "0.0.0.0",
-        "tag": "shadowsocks-inbound",
-        "settings": {
-          "method": "aes-256-gcm",
-          "password": "${PASS}",
-          "network": "tcp",
-          "ivCheck": true
-        }
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": [
-          "http",
-          "tls"
-        ]
+      }
+    },
+    {
+      "protocol": "shadowsocks",
+      "port": 1081,
+      "listen": "0.0.0.0",
+      "tag": "shadowsocks-inbound",
+      "settings": {
+        "method": "aes-256-gcm",
+        "password": "${PASS}",
+        "network": "tcp",
+        "ivCheck": true
       }
     }
   ],
