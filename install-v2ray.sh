@@ -3,14 +3,24 @@
 V2RAY_VERSION=4.34.0
 
 FILE_NAME=v2ray-linux-64.zip
-TMP_ZIP_PATH=/tmp/${FILE_NAME}
+ARM_FILE_NAME=v2ray-linux-arm64-v8a.zip
 
+TMP_ZIP_PATH=/tmp/${FILE_NAME}
+https://github.com/v2fly/v2ray-core/releases/download/v4.41.0/v2ray-linux-arm64-v8a.zip
 __install_v2ray() {
   # Install requirements components
   apt-get install unzip -y
 
+
   # Download v2ray zip file from github releases
-  curl -fsSL https://github.com/v2fly/v2ray-core/releases/download/v${V2RAY_VERSION}/${FILE_NAME} --output ${TMP_ZIP_PATH}
+  case $(uname -m) in
+      x86_64)
+        curl -fsSL https://github.com/v2fly/v2ray-core/releases/download/v${V2RAY_VERSION}/${FILE_NAME} --output ${TMP_ZIP_PATH}
+      ;;
+      aarch64) 
+        curl -fsSL https://github.com/v2fly/v2ray-core/releases/download/v${V2RAY_VERSION}/${ARM_FILE_NAME} --output ${TMP_ZIP_PATH}
+      ;;
+  esac
 
   LIB_PATH=/usr/lib/v2ray-linux-64
   echo "Download and install v2ray-linux-64 to ${LIB_PATH}"
