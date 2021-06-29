@@ -21,7 +21,8 @@ __install_nginx(){
   curl -fsSL $nginx_package --output $tmp_file
 
   echo "Install tengine..."
-  tar -xf $tmp_file -c /tmp
+  tar -xf $tmp_file -C /tmp
+
   cd /tmp/$tengine_version
     sh ./configure
     make
