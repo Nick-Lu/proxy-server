@@ -1,4 +1,5 @@
 #!/bin/bash
+self_dir=$(cd `dirname $0`; pwd)
 
 V2RAY_VERSION=4.34.0
 
@@ -6,7 +7,6 @@ FILE_NAME=v2ray-linux-64.zip
 ARM_FILE_NAME=v2ray-linux-arm64-v8a.zip
 
 TMP_ZIP_PATH=/tmp/${FILE_NAME}
-https://github.com/v2fly/v2ray-core/releases/download/v4.41.0/v2ray-linux-arm64-v8a.zip
 __install_v2ray() {
   # Install requirements components
   apt-get install unzip -y
@@ -82,10 +82,9 @@ EOF
 
 __v2ray_as_server() {
   # Install V2Ray as service
-  SERVICE_MODULE_FILE_URL=https://raw.githubusercontent.com/Nick-Lu/proxy-server/master/v2ray.service
   SERVICE_MODULE_PATH=/etc/systemd/system/v2ray.service
 
-  curl -fsSL ${SERVICE_MODULE_FILE_URL} --output ${SERVICE_MODULE_PATH}
+  cp $self_dir/v2ray.service ${SERVICE_MODULE_PATH}
 
   chmod 644 ${SERVICE_MODULE_PATH}
 

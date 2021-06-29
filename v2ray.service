@@ -7,4 +7,3 @@ ExecStart=/usr/bin/v2ray --config /etc/v2ray.json
 
 [Install]
 WantedBy=default.target
-
