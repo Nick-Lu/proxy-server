@@ -1,6 +1,6 @@
 #!/bin/bash
 
-project_dir=/temp/proxy-server/proxy-server-develop
+project_dir=/tmp/proxy-server/proxy-server-develop
 
 
 rm -rf /tmp/proxy-server.zip /tmp/proxy-server
@@ -12,6 +12,6 @@ mkdir /tmp/proxy-server
 unzip /tmp/proxy-server.zip -d /tmp/proxy-server
 
 
-sh $project_dir/install-v2ray.sh
+sh $project_dir/install-v2ray.sh $0 $1
 
 sh $project_dir/install-nginx.sh
