@@ -23,9 +23,9 @@ __install_nginx(){
   echo "Install tengine..."
   tar -xf $tmp_file -c /tmp
   cd /tmp/$tengine_version
-    ./configure
-    sudo make
-    sudo make install
+    sh ./configure
+    make
+    make install
   cd - 
   echo "Install tengine successful"
 }
