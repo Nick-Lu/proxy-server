@@ -47,6 +47,8 @@ __nginx_as_server() {
 
 __config_nginx(){
   cp $self_dir/config/nginx.conf /usr/local/nginx/conf
+  sed '/drop-off-instance.edecker.local/d' /etc/hosts
+  echo "127.0.0.1 drop-off-instance.edecker.local" >> /etc/hosts
 }
 
 
